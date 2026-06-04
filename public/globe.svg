@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" fill="none">
+  <g stroke="#2a5fe6" stroke-width="1.2" stroke-linecap="round">
+    <circle cx="240" cy="240" r="218" />
+    <ellipse cx="240" cy="240" rx="72" ry="218" />
+    <ellipse cx="240" cy="240" rx="145" ry="218" />
+    <ellipse cx="240" cy="240" rx="218" ry="72" />
+    <ellipse cx="240" cy="240" rx="218" ry="145" />
+    <line x1="22" y1="240" x2="458" y2="240" />
+    <line x1="240" y1="22" x2="240" y2="458" />
+  </g>
+  <g fill="#0ab4cf">
+    <circle cx="240" cy="95" r="4" />
+    <circle cx="312" cy="240" r="4" />
+    <circle cx="168" cy="312" r="4" />
+    <circle cx="240" cy="240" r="3" />
+  </g>
+</svg>

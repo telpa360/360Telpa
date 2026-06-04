@@ -78,8 +78,9 @@ body {
   overflow-x: hidden;
 }
 
-/* Signature background: soft layered mesh-gradient glows that drift slowly.
-   Sits behind everything; shows through transparent sections for depth. */
+/* Signature background: soft layered aurora glows that drift slowly, with a
+   faint warm accent. Sits behind everything; shows through transparent
+   sections for depth. */
 body::before {
   content: "";
   position: fixed;
@@ -87,23 +88,27 @@ body::before {
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(38% 34% at 12% 6%, rgba(42, 95, 230, 0.1), transparent 60%),
-    radial-gradient(34% 30% at 90% 2%, rgba(10, 180, 207, 0.09), transparent 60%),
-    radial-gradient(42% 40% at 96% 72%, rgba(42, 95, 230, 0.07), transparent 62%),
-    radial-gradient(40% 38% at 2% 88%, rgba(10, 180, 207, 0.06), transparent 62%);
-  animation: bg-drift 26s ease-in-out infinite alternate;
+    radial-gradient(40% 36% at 14% 2%, rgba(42, 95, 230, 0.13), transparent 60%),
+    radial-gradient(34% 30% at 88% 0%, rgba(10, 180, 207, 0.11), transparent 60%),
+    radial-gradient(46% 42% at 100% 68%, rgba(42, 95, 230, 0.08), transparent 62%),
+    radial-gradient(42% 40% at 0% 84%, rgba(10, 180, 207, 0.07), transparent 62%),
+    radial-gradient(34% 30% at 72% 102%, rgba(217, 168, 108, 0.06), transparent 60%);
+  animation: bg-drift 28s ease-in-out infinite alternate;
 }
 
-/* Ultra-fine noise texture for a premium, non-flat surface. */
+/* Faint premium dot-grid texture (luxury-tech). Shows on transparent
+   sections; the solid `section-soft` blocks stay clean for visual rhythm. */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.4;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  background-size: 140px 140px;
+  background-image: radial-gradient(rgba(42, 95, 230, 0.07) 1px, transparent 1.4px);
+  background-size: 27px 27px;
+  background-position: -6px -6px;
+  mask-image: radial-gradient(125% 120% at 50% 0%, #000 55%, transparent 100%);
+  -webkit-mask-image: radial-gradient(125% 120% at 50% 0%, #000 55%, transparent 100%);
 }
 
 img,
@@ -519,18 +524,20 @@ button {
   overflow: hidden;
 }
 
-/* Faint spatial grid + glow — the hero's signature depth. */
+/* Slowly rotating globe / lat-long wireframe — the hero's signature accent,
+   reinforcing the 360° + Google Maps spatial theme. */
 .hero::before {
   content: "";
   position: absolute;
-  inset: 0;
+  top: -10%;
+  right: -8%;
+  width: min(620px, 60%);
+  aspect-ratio: 1;
+  background: url("/globe.svg") center / contain no-repeat;
+  opacity: 0.14;
   pointer-events: none;
-  background-image:
-    linear-gradient(rgba(42, 95, 230, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(42, 95, 230, 0.045) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(70% 70% at 72% 38%, #000 0%, transparent 72%);
-  -webkit-mask-image: radial-gradient(70% 70% at 72% 38%, #000 0%, transparent 72%);
+  z-index: 0;
+  animation: spin 90s linear infinite;
 }
 
 .hero::after {
@@ -543,6 +550,7 @@ button {
 
 .hero-inner {
   position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   align-items: center;
@@ -1769,6 +1777,274 @@ a.footer-link:hover {
   color: #7e8aa3;
 }
 
+.footer-story {
+  margin-top: 16px;
+  max-width: 360px;
+  font-size: 0.86rem;
+  font-style: italic;
+  color: #8b97b0;
+  padding-left: 14px;
+  border-left: 2px solid var(--cyan);
+}
+
+/* =========================================================
+   PRICING
+   ========================================================= */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.pricing-subhead {
+  text-align: center;
+  margin: clamp(40px, 6vw, 60px) 0 26px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+}
+
+.pricing-grid--extra {
+  grid-template-columns: repeat(4, 1fr);
+  max-width: none;
+}
+
+.price-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 28px;
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease),
+    border-color 0.35s var(--ease);
+}
+
+.price-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--blue);
+  box-shadow: var(--shadow-md);
+}
+
+.price-card--compact {
+  padding: 26px 24px;
+}
+
+/* Highlighted main package */
+.price-card.is-highlight {
+  border-color: var(--blue);
+  box-shadow: var(--shadow-md);
+}
+
+.price-card.is-highlight::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: var(--grad-text);
+}
+
+.price-badge {
+  position: absolute;
+  top: -12px;
+  left: 28px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--blue);
+  padding: 5px 12px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-blue);
+}
+
+.price-title {
+  font-size: 1.18rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 14px;
+  min-height: 2.6em;
+  display: flex;
+  align-items: flex-end;
+}
+
+.price-card--compact .price-title {
+  font-size: 1.08rem;
+  min-height: 0;
+  margin-bottom: 12px;
+}
+
+.price-amount {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.price-from {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.price-value {
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.price-card--compact .price-value {
+  font-size: 1.5rem;
+}
+
+.price-desc {
+  font-size: 0.93rem;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.price-list {
+  display: grid;
+  gap: 11px;
+  margin-bottom: 26px;
+}
+
+.price-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.price-check {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  background: var(--blue-tint);
+  color: var(--blue-deep);
+  margin-top: 1px;
+}
+
+.price-check svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* push CTA to the bottom so cards align */
+.price-cta {
+  margin-top: auto;
+  width: 100%;
+}
+
+.pricing-note {
+  max-width: 620px;
+  margin: 34px auto 0;
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+/* =========================================================
+   FAQ
+   ========================================================= */
+.faq {
+  max-width: 760px;
+  margin: 0 auto;
+  border-top: 1px solid var(--line);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-q-wrap {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 6px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: inherit;
+  font-size: 1.04rem;
+  font-weight: 600;
+  color: var(--ink);
+  transition: color 0.25s var(--ease);
+}
+
+.faq-q:hover {
+  color: var(--blue-deep);
+}
+
+.faq-icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--blue);
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+
+.faq-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.faq-item.is-open .faq-icon::after {
+  transform: translate(-50%, -50%) rotate(0);
+  opacity: 0;
+}
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.36s var(--ease);
+}
+
+.faq-item.is-open .faq-a {
+  max-height: 260px;
+}
+
+.faq-a-inner {
+  padding: 0 6px 22px;
+  font-size: 0.96rem;
+  color: var(--muted);
+}
+
 /* =========================================================
    ANIMATIONS (subtle)
    ========================================================= */
@@ -1913,6 +2189,15 @@ a.footer-link:hover {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .pricing-grid,
+  .pricing-grid--extra {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .price-title {
+    min-height: 0;
+  }
+
   .process-timeline {
     grid-template-columns: repeat(2, 1fr);
     gap: 34px;
@@ -1955,7 +2240,9 @@ a.footer-link:hover {
   .services-grid,
   .usecases-grid,
   .benefits-grid,
-  .process-timeline {
+  .process-timeline,
+  .pricing-grid,
+  .pricing-grid--extra {
     grid-template-columns: 1fr;
   }
 

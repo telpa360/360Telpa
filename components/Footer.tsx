@@ -1,8 +1,8 @@
 const footerNav = [
   { href: "#pakalpojumi", label: "Pakalpojumi" },
+  { href: "#cenas", label: "Cenas" },
   { href: "#google-maps", label: "Google Maps 360°" },
   { href: "#kam-piemerots", label: "Kam piemērots" },
-  { href: "#process", label: "Process" },
   { href: "#kontakti", label: "Kontakti" },
 ];
 
@@ -27,6 +27,10 @@ export default function Footer() {
               360° virtuālās tūres, Google Maps skati un telpu prezentācija
               nekustamajiem īpašumiem un uzņēmumiem. Parādi savu telpu
               profesionāli un viegli apskatāmi internetā.
+            </p>
+            <p className="footer-story">
+              Telpa360 sākās kā vienkārša pirmā mājaslapa, bet šodien tā
+              attīstās par profesionālu 360° telpu prezentācijas pakalpojumu.
             </p>
           </div>
 

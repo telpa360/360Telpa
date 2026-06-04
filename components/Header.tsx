@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 
 const navLinks = [
   { href: "#pakalpojumi", label: "Pakalpojumi" },
+  { href: "#cenas", label: "Cenas" },
   { href: "#google-maps", label: "Google Maps 360°" },
   { href: "#kam-piemerots", label: "Kam piemērots" },
-  { href: "#process", label: "Process" },
   { href: "#kontakti", label: "Kontakti" },
 ];
 

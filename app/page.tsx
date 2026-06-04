@@ -2,6 +2,8 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Intro from "@/components/Intro";
 import Services from "@/components/Services";
+import Pricing from "@/components/Pricing";
+import Faq from "@/components/Faq";
 import GoogleMaps from "@/components/GoogleMaps";
 import TourEmbedSection from "@/components/TourEmbedSection";
 import UseCases from "@/components/UseCases";
@@ -19,6 +21,8 @@ export default function Home() {
         <Hero />
         <Intro />
         <Services />
+        <Pricing />
+        <Faq />
         <GoogleMaps />
         <TourEmbedSection />
         <UseCases />
