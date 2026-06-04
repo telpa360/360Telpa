@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 
 const navLinks = [
   { href: "#pakalpojumi", label: "Pakalpojumi" },
+  { href: "#google-maps", label: "Google Maps 360°" },
   { href: "#kam-piemerots", label: "Kam piemērots" },
   { href: "#process", label: "Process" },
-  { href: "#ieguvumi", label: "Ieguvumi" },
   { href: "#kontakti", label: "Kontakti" },
 ];
 
@@ -50,7 +50,7 @@ export default function Header() {
         </nav>
 
         <a href="#kontakti" className="btn btn-primary header-cta">
-          Pieteikt filmēšanu
+          Saņemt piedāvājumu
         </a>
 
         <button
@@ -87,7 +87,7 @@ export default function Header() {
           className="btn btn-primary mobile-cta"
           onClick={() => setMenuOpen(false)}
         >
-          Pieteikt filmēšanu
+          Saņemt piedāvājumu
         </a>
       </div>
     </header>

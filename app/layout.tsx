@@ -10,26 +10,28 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Telpa360 — Immersīvs vizuālais saturs telpām un īpašumiem",
+  title: "Telpa360 — 360° virtuālās tūres un Google Maps skati | Rīga",
   description:
-    "Telpa360 veido 360° virtuālās tūres, 3D tūres, dronu un FPV video, GoPro filmējumus un reklāmas video. Parādi savu telpu, īpašumu vai pasākumu profesionāli un pārliecinoši internetā.",
+    "Telpa360 veido 360° virtuālās tūres nekustamajiem īpašumiem, 360° skatus Google Maps profilam un vizuālu uzņēmumu telpu prezentāciju. Ļauj klientiem apskatīt telpu attālināti. Rīga, Latvija.",
   keywords: [
+    "360 tūres",
+    "virtuālās tūres",
     "360 virtuālās tūres",
+    "Google Maps 360 skati",
+    "Street View uzņēmumam",
     "3D tūres",
-    "dronu filmēšana",
-    "FPV dronu video",
-    "GoPro filmējumi",
-    "reklāmas video",
     "nekustamais īpašums",
+    "uzņēmumu telpu prezentācija",
+    "dronu filmēšana",
     "Telpa360",
     "Rīga",
     "Latvija",
   ],
   metadataBase: new URL("https://telpa360.lv"),
   openGraph: {
-    title: "Telpa360 — Parādi savu telpu tā, lai to gribas redzēt",
+    title: "Telpa360 — Parādi savu īpašumu vai uzņēmumu 360° skatā",
     description:
-      "Immersīvs vizuālais saturs: 360° virtuālās tūres, 3D tūres, dronu un FPV video, GoPro un reklāmas video. Vairāk uzticamības un kvalitatīvu pieprasījumu.",
+      "360° virtuālās tūres nekustamajiem īpašumiem, Google Maps 360° skati un uzņēmumu telpu prezentācija. Ļauj klientiem iepazīt vietu pirms apmeklējuma. Rīga, Latvija.",
     locale: "lv_LV",
     type: "website",
     siteName: "Telpa360",

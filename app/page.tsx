@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Intro from "@/components/Intro";
 import Services from "@/components/Services";
+import GoogleMaps from "@/components/GoogleMaps";
 import UseCases from "@/components/UseCases";
 import Process from "@/components/Process";
 import Benefits from "@/components/Benefits";
@@ -16,6 +17,7 @@ export default function Home() {
         <Hero />
         <Intro />
         <Services />
+        <GoogleMaps />
         <UseCases />
         <Process />
         <Benefits />

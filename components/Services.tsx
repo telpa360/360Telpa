@@ -1,83 +1,87 @@
-const services = [
+import { Icon, type IconName } from "./Icons";
+
+type Service = {
+  icon: IconName;
+  title: string;
+  text: string;
+  tag: string;
+  featured?: boolean;
+};
+
+const services: Service[] = [
   {
     icon: "tour360",
     title: "360° virtuālās tūres",
-    text: "Interaktīva telpas apskate ar pārejas punktiem, kur interesents pats var staigāt pa telpu, pagriezties un izpētīt katru stūri tieši pārlūkā.",
-    tag: "Interaktīvi",
+    text: "Interaktīva telpas apskate, kurā interesents pats pārvietojas pa telpu, pagriežas un izpēta katru stūri tieši pārlūkā. Galvenais Telpa360 pakalpojums nekustamajiem īpašumiem un uzņēmumu telpām.",
+    tag: "Galvenais pakalpojums",
+    featured: true,
   },
   {
-    icon: "tour3d",
+    icon: "maps",
+    title: "360° skati Google Maps profilam",
+    text: "Piesaistām 360° skatu tava uzņēmuma Google Maps profilam, lai klienti var apskatīt telpas tieši meklēšanas rezultātos un kartē — vēl pirms apmeklējuma.",
+    tag: "Galvenais pakalpojums",
+    featured: true,
+  },
+  {
+    icon: "cube",
     title: "3D tūres",
-    text: "Reālistisks telpu 3D modelis nekustamajiem īpašumiem un komerctelpām ar mērogu, plānojumu un dziļuma sajūtu, kas izceļas no parastām fotogrāfijām.",
-    tag: "Nekustamais īpašums",
+    text: "Reālistisks telpu 3D modelis ar mērogu, plānojumu un dziļuma sajūtu, kas izceļas no parastām fotogrāfijām.",
+    tag: "Telpu prezentācija",
   },
   {
     icon: "drone",
     title: "Dronu filmēšana",
-    text: "Iespaidīgi gaisa kadri, kas parāda objektu, apkārtni un mērogu no augšas — ideāli īpašumiem, teritorijām un pasākumiem.",
-    tag: "Gaisa skats",
+    text: "Gaisa kadri, kas parāda objektu, apkārtni un mērogu no augšas — īpašumiem, teritorijām un pasākumiem.",
+    tag: "Papildu saturs",
   },
   {
     icon: "fpv",
     title: "FPV dronu video",
-    text: "Dinamiski, kinematogrāfiski lidojumi cauri telpām un ārā no tām vienā nepārtrauktā kadrā, kas piesaista uzmanību sociālajos tīklos.",
-    tag: "Kinematogrāfiski",
+    text: "Dinamiski, kinematogrāfiski lidojumi cauri telpām vienā nepārtrauktā kadrā, kad nepieciešams īpašs efekts.",
+    tag: "Papildu saturs",
   },
   {
-    icon: "gopro",
-    title: "GoPro filmējumi",
-    text: "Aktīvi, pirmās personas skata filmējumi sportam, aktīvajai atpūtai un pieredzēm, kas nodod kustību, ātrumu un emociju.",
-    tag: "Pieredze",
-  },
-  {
-    icon: "promo",
+    icon: "video",
     title: "Reklāmas video",
-    text: "Īsi, mērķtiecīgi reklāmas video sociālajiem tīkliem un mājaslapām, kas apvieno labākos kadrus vienā pārliecinošā stāstā.",
-    tag: "Sociālie tīkli",
+    text: "Īsi, mērķtiecīgi video sociālajiem tīkliem un mājaslapām, kas apvieno labākos kadrus vienā stāstā.",
+    tag: "Papildu saturs",
   },
 ];
 
-function ServiceIcon({ name }: { name: string }) {
-  return (
-    <span className={`service-icon service-icon-${name}`} aria-hidden="true">
-      <span className="si-core" />
-      <span className="si-ring" />
-      <span className="si-accent" />
-    </span>
-  );
-}
-
 export default function Services() {
   return (
-    <section id="pakalpojumi" className="section services">
+    <section id="pakalpojumi" className="section">
       <div className="container">
         <div className="section-head">
           <span className="section-eyebrow">Pakalpojumi</span>
           <h2 className="section-title">
-            Viss vizuālais saturs, lai telpa{" "}
-            <span className="text-gradient">izceltos</span>
+            Galvenais — telpu prezentācija{" "}
+            <span className="text-gradient">360° skatā</span>
           </h2>
           <p className="section-text section-text-center">
-            No interaktīvām tūrēm līdz kinematogrāfiskam dronu video — visu
-            veidojam vienuviet, vienotā profesionālā stilā.
+            Telpa360 specializējas 360° virtuālajās tūrēs un Google Maps skatos.
+            Dronu, FPV un reklāmas video pieejami kā papildinājums.
           </p>
         </div>
 
         <div className="services-grid">
           {services.map((s) => (
-            <article key={s.title} className="service-card">
-              <div className="service-card-glow" aria-hidden="true" />
+            <article
+              key={s.title}
+              className={`service-card${s.featured ? " is-featured" : ""}`}
+            >
               <div className="service-card-top">
-                <ServiceIcon name={s.icon} />
+                <span className="service-icon">
+                  <Icon name={s.icon} />
+                </span>
                 <span className="service-tag">{s.tag}</span>
               </div>
               <h3 className="service-title">{s.title}</h3>
               <p className="service-text">{s.text}</p>
               <a href="#kontakti" className="service-link">
                 Uzzināt vairāk
-                <span className="service-link-arrow" aria-hidden="true">
-                  →
-                </span>
+                <span aria-hidden="true">→</span>
               </a>
             </article>
           ))}

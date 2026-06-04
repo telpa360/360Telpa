@@ -1,44 +1,43 @@
 const points = [
   {
-    title: "Uzticamība no pirmā skatiena",
-    text: "Kvalitatīvs vizuālais saturs rada profesionālu iespaidu un palīdz cilvēkam uzticēties piedāvājumam jau pirms pirmā zvana.",
+    title: "Uzticība jau pirms saziņas",
+    text: "Skaidrs, profesionāls telpas atspoguļojums palīdz cilvēkam saprast piedāvājumu un uzticēties tam vēl pirms pirmā zvana.",
   },
   {
     title: "Mazāk lieku jautājumu",
-    text: "360° tūre parāda telpu tā, kā tā ir patiesībā — interesentam jau iepriekš ir skaidrs izkārtojums, plūsma un noskaņa.",
+    text: "360° tūre parāda telpu tādu, kāda tā ir — izkārtojumu, plūsmu un izmērus interesents redz pats, bez papildu skaidrojumiem.",
   },
   {
     title: "Apskate jebkurā laikā",
-    text: "Telpu var izpētīt attālināti, no jebkuras ierīces, jebkurā diennakts laikā — bez nepieciešamības uzreiz organizēt klātienes vizīti.",
+    text: "Telpu var izpētīt attālināti no jebkuras ierīces, ērtā brīdī — nav uzreiz jāorganizē klātienes vizīte.",
   },
   {
-    title: "Kvalitatīvāki pieprasījumi",
-    text: "Pie tevis vēršas cilvēki, kuri jau ir redzējuši telpu un saprot, ko sagaida — tas nozīmē nopietnākas un mērķtiecīgākas sarunas.",
+    title: "Nopietnāki interesenti",
+    text: "Pie tevis vēršas cilvēki, kuri telpu jau ir redzējuši un saprot, ko sagaida. Tas nozīmē konkrētākas un kvalitatīvākas sarunas.",
   },
 ];
 
 export default function Intro() {
   return (
-    <section id="intro" className="section intro">
+    <section id="intro" className="section">
       <div className="container">
         <div className="intro-grid">
           <div className="intro-lead">
-            <span className="section-eyebrow">Kāpēc tas strādā</span>
+            <span className="section-eyebrow">Kāpēc tas palīdz</span>
             <h2 className="section-title">
-              Labāka prezentācija pārdod, iznomā un piesaista{" "}
-              <span className="text-gradient">ātrāk</span>
+              Cilvēki vēlas redzēt telpu,{" "}
+              <span className="text-gradient">pirms to apmeklē</span>
             </h2>
             <p className="section-text">
               Mūsdienās izvēle sākas ekrānā. Pirms cilvēks aizbrauc apskatīt
-              īpašumu, rezervē galdiņu restorānā vai izvēlas pasākuma norises
-              vietu, viņš jau ir izveidojis pirmo iespaidu internetā. Telpa360
-              palīdz, lai šis iespaids būtu spēcīgs, mūsdienīgs un patiess.
+              īpašumu, rezervē galdiņu vai izvēlas norises vietu, viņš jau ir
+              izveidojis pirmo iespaidu internetā. Telpa360 palīdz, lai šis
+              iespaids būtu skaidrs, profesionāls un patiess.
             </p>
             <p className="section-text">
-              Immersīvs saturs nav tikai skaists — tas veic darbu. Tas rada
-              uzticamību, samazina liekos jautājumus un ļauj telpu izpētīt no
-              attāluma, tāpēc pie tevis nonāk kvalitatīvāki un nopietnāki
-              interesenti.
+              Vizuāla telpas prezentācija rada uzticību, samazina liekos
+              jautājumus un ļauj vietu izpētīt no attāluma. Rezultātā pie tevis
+              nonāk vairāk nopietnu un sagatavotu interesentu.
             </p>
           </div>
 

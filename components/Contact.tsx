@@ -35,7 +35,7 @@ export default function Contact() {
   }, [state.status]);
 
   return (
-    <section id="kontakti" className="section contact">
+    <section id="kontakti" className="section section-soft">
       <div className="container">
         <div className="contact-grid">
           <div className="contact-info">
@@ -45,7 +45,7 @@ export default function Contact() {
               <span className="text-gradient">projektu</span>
             </h2>
             <p className="section-text">
-              Pastāsti, kādu telpu, īpašumu vai pasākumu vēlies parādīt, un mēs
+              Pastāsti, kādu telpu, īpašumu vai uzņēmumu vēlies parādīt, un mēs
               sagatavosim piedāvājumu. Atbildam parasti 24 stundu laikā.
             </p>
 
@@ -68,13 +68,13 @@ export default function Contact() {
               </li>
             </ul>
 
-            <div className="contact-badge glass">
-              <span className="rec-dot" />
-              Pieejami filmēšanai visā Latvijā
+            <div className="contact-badge">
+              <span className="dot" />
+              Pieejami visā Latvijā
             </div>
           </div>
 
-          <form ref={formRef} className="contact-form glass" action={formAction}>
+          <form ref={formRef} className="contact-form" action={formAction}>
             <div className="form-row">
               <label htmlFor="vards" className="form-label">
                 Vārds

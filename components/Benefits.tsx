@@ -1,67 +1,61 @@
-const benefits = [
+import { Icon, type IconName } from "./Icons";
+
+type Benefit = { icon: IconName; title: string; text: string };
+
+const benefits: Benefit[] = [
   {
-    icon: "shine",
+    icon: "sparkle",
     title: "Profesionāls iespaids",
-    text: "Tava telpa izskatās nokomplektēta, pārdomāta un uzticama jau no pirmā kadra.",
+    text: "Tava telpa izskatās pārdomāta un uzticama jau no pirmā skatiena.",
   },
   {
-    icon: "leads",
+    icon: "userCheck",
     title: "Vairāk kvalitatīvu pieprasījumu",
-    text: "Pie tevis vēršas cilvēki, kuri jau ir redzējuši telpu un ir patiesi ieinteresēti.",
+    text: "Pie tevis vēršas cilvēki, kuri telpu jau ir redzējuši un ir patiesi ieinteresēti.",
   },
   {
-    icon: "remote",
+    icon: "monitor",
     title: "Attālināta apskate",
-    text: "Interesents izpēta telpu jebkurā laikā un vietā — bez liekām klātienes vizītēm.",
+    text: "Interesents izpēta telpu jebkurā laikā un vietā, bez liekām klātienes vizītēm.",
   },
   {
-    icon: "web",
+    icon: "globe",
     title: "Labāka prezentācija internetā",
-    text: "Saturs, kas izceļas mājaslapā, sludinājumos un meklēšanas rezultātos.",
+    text: "Saturs, kas izceļas mājaslapā, sludinājumos un Google Maps profilā.",
   },
   {
-    icon: "social",
+    icon: "share",
     title: "Saturs sociālajiem tīkliem",
-    text: "Gatavi, dinamiski video, kas piesaista uzmanību un veido atpazīstamību.",
+    text: "Gatavs vizuālais materiāls, ko izmantot uzņēmuma komunikācijā.",
   },
   {
-    icon: "trust",
+    icon: "shield",
     title: "Spēcīgāka uzticamība",
-    text: "Caurspīdīgs, godīgs telpas atspoguļojums veido drošības sajūtu un noteiktību.",
+    text: "Godīgs un caurspīdīgs telpas atspoguļojums veido drošības sajūtu.",
   },
 ];
 
-function BenefitIcon({ name }: { name: string }) {
-  return (
-    <span className={`benefit-icon benefit-icon-${name}`} aria-hidden="true">
-      <span className="bi-shape" />
-    </span>
-  );
-}
-
 export default function Benefits() {
   return (
-    <section id="ieguvumi" className="section benefits">
-      <div className="benefits-bg" aria-hidden="true">
-        <div className="benefits-glow" />
-      </div>
+    <section id="ieguvumi" className="section">
       <div className="container">
         <div className="section-head">
           <span className="section-eyebrow">Ieguvumi</span>
           <h2 className="section-title">
-            Ko tu iegūsti ar{" "}
-            <span className="text-gradient">Telpa360</span>
+            Ko tu iegūsti ar <span className="text-gradient">Telpa360</span>
           </h2>
           <p className="section-text section-text-center">
-            Tas nav tikai skaists video. Tas ir instruments, kas palīdz pārdot,
-            iznomāt un piesaistīt klientus efektīvāk.
+            Tas nav tikai skaists video. Tas ir instruments, kas palīdz parādīt
+            telpu un piesaistīt klientus efektīvāk.
           </p>
         </div>
 
         <div className="benefits-grid">
           {benefits.map((b) => (
-            <article key={b.title} className="benefit-card glass">
-              <BenefitIcon name={b.icon} />
+            <article key={b.title} className="benefit-card">
+              <span className="benefit-icon">
+                <Icon name={b.icon} />
+              </span>
               <h3 className="benefit-title">{b.title}</h3>
               <p className="benefit-text">{b.text}</p>
             </article>

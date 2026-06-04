@@ -1,8 +1,8 @@
 const footerNav = [
   { href: "#pakalpojumi", label: "Pakalpojumi" },
+  { href: "#google-maps", label: "Google Maps 360°" },
   { href: "#kam-piemerots", label: "Kam piemērots" },
   { href: "#process", label: "Process" },
-  { href: "#ieguvumi", label: "Ieguvumi" },
   { href: "#kontakti", label: "Kontakti" },
 ];
 
@@ -24,9 +24,9 @@ export default function Footer() {
               </span>
             </a>
             <p className="footer-desc">
-              Immersīvs vizuālais saturs telpām, īpašumiem, uzņēmumiem un
-              pasākumiem. Parādi savu telpu profesionāli, uzticami un viegli
-              apskatāmi internetā.
+              360° virtuālās tūres, Google Maps skati un telpu prezentācija
+              nekustamajiem īpašumiem un uzņēmumiem. Parādi savu telpu
+              profesionāli un viegli apskatāmi internetā.
             </p>
           </div>
 
@@ -49,7 +49,7 @@ export default function Footer() {
             </a>
             <span className="footer-link footer-link-static">Rīga, Latvija</span>
             <a href="#kontakti" className="btn btn-primary footer-cta">
-              Pieteikt filmēšanu
+              Saņemt piedāvājumu
             </a>
           </div>
         </div>
