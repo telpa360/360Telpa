@@ -28,6 +28,9 @@ yarn-error.log*
 .env
 .env*.local
 
+# allow production env (contains only the public publishable key)
+!.env.production
+
 # vercel
 .vercel
 
