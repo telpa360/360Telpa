@@ -19,48 +19,74 @@ type Note = { type: "success" | "error"; text: string };
 
 export default function Contact() {
   const [note, setNote] = useState<Note | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting) return;
 
-    try {
-      const form = event.currentTarget;
-      const data = new FormData(form);
+    // Capture the form synchronously (event.currentTarget is null after await).
+    const form = event.currentTarget;
+    const data = new FormData(form);
 
-      const name = String(data.get("vards") ?? "").trim();
-      const contact = String(data.get("kontakts") ?? "").trim();
-      const service = String(data.get("pakalpojums") ?? "").trim();
-      const message = String(data.get("zina") ?? "").trim();
+    const name = String(data.get("vards") ?? "").trim();
+    const contact = String(data.get("kontakts") ?? "").trim();
+    const service = String(data.get("pakalpojums") ?? "").trim();
+    const message = String(data.get("zina") ?? "").trim();
 
-      const subject = `Pieteikums filmēšanai${name ? ` — ${name}` : ""}`;
-      const body = [
-        `Vārds: ${name}`,
-        `E-pasts vai telefons: ${contact}`,
-        `Pakalpojums: ${service}`,
-        "",
-        "Ziņa:",
-        message,
-      ].join("\n");
-
-      const mailtoUrl = `mailto:${EMAIL}?subject=${encodeURIComponent(
-        subject
-      )}&body=${encodeURIComponent(body)}`;
-
-      // Opens the visitor's email client with a prepared message.
-      // Does not throw if no client is configured.
-      window.location.href = mailtoUrl;
-
-      setNote({
-        type: "success",
-        text: "Paldies! Atvērsies tava e-pasta programma ar sagatavotu vēstuli — nospied “Sūtīt”, lai pabeigtu pieteikumu.",
-      });
-    } catch (error) {
-      // Log the safely-converted message; never surface a raw object/Event.
-      console.error("Kļūda, atverot e-pastu:", getErrorMessage(error));
+    if (!name || !contact || !message) {
       setNote({
         type: "error",
-        text: `Neizdevās automātiski atvērt e-pasta programmu. Lūdzu, raksti mums tieši uz ${EMAIL}.`,
+        text: "Lūdzu, aizpildi vārdu, kontaktinformāciju un ziņu.",
       });
+      return;
+    }
+
+    setSubmitting(true);
+    setNote(null);
+
+    try {
+      // Saves the submission in the background via Supabase's REST endpoint —
+      // no email app is opened and the visitor never has to log in to anything.
+      // A plain fetch keeps the page bundle small. RLS allows public inserts.
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/contact_submissions`,
+        {
+          method: "POST",
+          headers: {
+            apikey: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!}`,
+            "Content-Type": "application/json",
+            Prefer: "return=minimal",
+          },
+          body: JSON.stringify({
+            name,
+            contact,
+            service: service || null,
+            message,
+          }),
+        }
+      );
+
+      if (!res.ok) {
+        const detail = await res.text().catch(() => "");
+        throw new Error(`HTTP ${res.status} ${detail}`.trim());
+      }
+
+      form.reset();
+      setNote({
+        type: "success",
+        text: "Paldies! Tavs pieteikums ir nosūtīts. Sazināsimies ar tevi tuvākajā laikā.",
+      });
+    } catch (error) {
+      // Convert any unknown error safely; never surface a raw object/Event.
+      console.error("Pieteikuma kļūda:", getErrorMessage(error));
+      setNote({
+        type: "error",
+        text: `Neizdevās nosūtīt pieteikumu. Lūdzu, mēģini vēlreiz vai raksti mums uz ${EMAIL}.`,
+      });
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -117,6 +143,7 @@ export default function Contact() {
                 placeholder="Tavs vārds"
                 maxLength={200}
                 required
+                disabled={submitting}
               />
             </div>
 
@@ -132,6 +159,7 @@ export default function Contact() {
                 placeholder="lai mēs varētu sazināties"
                 maxLength={200}
                 required
+                disabled={submitting}
               />
             </div>
 
@@ -144,6 +172,7 @@ export default function Contact() {
                 name="pakalpojums"
                 className="form-input form-select"
                 defaultValue={services[0]}
+                disabled={submitting}
               >
                 {services.map((s) => (
                   <option key={s} value={s}>
@@ -165,14 +194,16 @@ export default function Contact() {
                 rows={4}
                 maxLength={5000}
                 required
+                disabled={submitting}
               />
             </div>
 
             <button
               type="submit"
               className="btn btn-primary btn-lg form-submit"
+              disabled={submitting}
             >
-              Nosūtīt pieteikumu
+              {submitting ? "Nosūta..." : "Nosūtīt pieteikumu"}
             </button>
 
             {note && (
