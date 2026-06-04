@@ -1,6 +1,12 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useActionState, useEffect, useRef } from "react";
+import { submitContact, type ContactState } from "@/app/actions/contact";
+
+const initialContactState: ContactState = {
+  status: "idle",
+  message: "",
+};
 
 const services = [
   "360° virtuālās tūres",
@@ -15,35 +21,18 @@ const services = [
 const EMAIL = "Telpa360@gmail.com";
 
 export default function Contact() {
-  const [sent, setSent] = useState(false);
+  const [state, formAction, isPending] = useActionState(
+    submitContact,
+    initialContactState
+  );
+  const formRef = useRef<HTMLFormElement>(null);
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-
-    const name = String(data.get("vards") || "").trim();
-    const contact = String(data.get("kontakts") || "").trim();
-    const service = String(data.get("pakalpojums") || "").trim();
-    const message = String(data.get("zina") || "").trim();
-
-    const subject = `Pieteikums filmēšanai${name ? ` — ${name}` : ""}`;
-    const bodyLines = [
-      `Vārds: ${name}`,
-      `E-pasts vai telefons: ${contact}`,
-      `Pakalpojums: ${service}`,
-      "",
-      "Ziņa:",
-      message,
-    ];
-
-    const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
-
-    window.location.href = mailto;
-    setSent(true);
-  }
+  // Reset the form fields after a successful submission.
+  useEffect(() => {
+    if (state.status === "success") {
+      formRef.current?.reset();
+    }
+  }, [state.status]);
 
   return (
     <section id="kontakti" className="section contact">
@@ -85,7 +74,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <form className="contact-form glass" onSubmit={handleSubmit}>
+          <form ref={formRef} className="contact-form glass" action={formAction}>
             <div className="form-row">
               <label htmlFor="vards" className="form-label">
                 Vārds
@@ -96,7 +85,9 @@ export default function Contact() {
                 type="text"
                 className="form-input"
                 placeholder="Tavs vārds"
+                maxLength={200}
                 required
+                disabled={isPending}
               />
             </div>
 
@@ -110,7 +101,9 @@ export default function Contact() {
                 type="text"
                 className="form-input"
                 placeholder="lai mēs varētu sazināties"
+                maxLength={200}
                 required
+                disabled={isPending}
               />
             </div>
 
@@ -123,6 +116,7 @@ export default function Contact() {
                 name="pakalpojums"
                 className="form-input form-select"
                 defaultValue={services[0]}
+                disabled={isPending}
               >
                 {services.map((s) => (
                   <option key={s} value={s}>
@@ -142,18 +136,29 @@ export default function Contact() {
                 className="form-input form-textarea"
                 placeholder="Pastāsti par savu telpu vai projektu..."
                 rows={4}
+                maxLength={5000}
                 required
+                disabled={isPending}
               />
             </div>
 
-            <button type="submit" className="btn btn-primary btn-lg form-submit">
-              Nosūtīt pieteikumu
+            <button
+              type="submit"
+              className="btn btn-primary btn-lg form-submit"
+              disabled={isPending}
+            >
+              {isPending ? "Nosūta..." : "Nosūtīt pieteikumu"}
             </button>
 
-            {sent && (
-              <p className="form-note" role="status">
-                Paldies! Atvērsies tava e-pasta programma ar sagatavotu vēstuli —
-                nospied “Sūtīt”, lai pabeigtu pieteikumu.
+            {state.status !== "idle" && (
+              <p
+                className={`form-note ${
+                  state.status === "error" ? "form-note-error" : ""
+                }`}
+                role="status"
+                aria-live="polite"
+              >
+                {state.message}
               </p>
             )}
           </form>

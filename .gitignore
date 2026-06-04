@@ -34,6 +34,11 @@ yarn-error.log*
 # claude local settings
 .claude/settings.local.json
 
+# agent skills (local tooling, machine-specific symlinks)
+/.agents/
+/.claude/skills/
+/skills-lock.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
