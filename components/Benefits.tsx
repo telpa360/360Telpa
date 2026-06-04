@@ -39,7 +39,7 @@ export default function Benefits() {
   return (
     <section id="ieguvumi" className="section">
       <div className="container">
-        <div className="section-head">
+        <div className="section-head reveal">
           <span className="section-eyebrow">Ieguvumi</span>
           <h2 className="section-title">
             Ko tu iegūsti ar <span className="text-gradient">Telpa360</span>
@@ -50,7 +50,7 @@ export default function Benefits() {
           </p>
         </div>
 
-        <div className="benefits-grid">
+        <div className="benefits-grid reveal-stagger">
           {benefits.map((b) => (
             <article key={b.title} className="benefit-card">
               <span className="benefit-icon">

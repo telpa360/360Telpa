@@ -28,6 +28,7 @@ const services: Service[] = [
     title: "3D tūres",
     text: "Reālistisks telpu 3D modelis ar mērogu, plānojumu un dziļuma sajūtu, kas izceļas no parastām fotogrāfijām.",
     tag: "Telpu prezentācija",
+    featured: true,
   },
   {
     icon: "drone",
@@ -42,6 +43,12 @@ const services: Service[] = [
     tag: "Papildu saturs",
   },
   {
+    icon: "camera",
+    title: "GoPro filmējumi",
+    text: "Aktīvi, pirmās personas skata filmējumi pieredzēm, aktīvajai atpūtai un kustībā balstītam saturam.",
+    tag: "Papildu saturs",
+  },
+  {
     icon: "video",
     title: "Reklāmas video",
     text: "Īsi, mērķtiecīgi video sociālajiem tīkliem un mājaslapām, kas apvieno labākos kadrus vienā stāstā.",
@@ -53,19 +60,20 @@ export default function Services() {
   return (
     <section id="pakalpojumi" className="section">
       <div className="container">
-        <div className="section-head">
+        <div className="section-head reveal">
           <span className="section-eyebrow">Pakalpojumi</span>
           <h2 className="section-title">
             Galvenais — telpu prezentācija{" "}
             <span className="text-gradient">360° skatā</span>
           </h2>
           <p className="section-text section-text-center">
-            Telpa360 specializējas 360° virtuālajās tūrēs un Google Maps skatos.
-            Dronu, FPV un reklāmas video pieejami kā papildinājums.
+            Telpa360 specializējas 360° virtuālajās tūrēs, Google Maps skatos un
+            3D tūrēs. Dronu, FPV, GoPro un reklāmas video pieejami kā
+            papildinājums.
           </p>
         </div>
 
-        <div className="services-grid">
+        <div className="services-grid reveal-stagger">
           {services.map((s) => (
             <article
               key={s.title}

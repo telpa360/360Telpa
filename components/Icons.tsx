@@ -21,6 +21,7 @@ export type IconName =
   | "drone"
   | "fpv"
   | "video"
+  | "camera"
   | "check"
   | "home"
   | "handshake"
@@ -88,6 +89,14 @@ export function Icon({ name }: { name: IconName }) {
         <svg {...base}>
           <rect x="2.5" y="6" width="13" height="12" rx="2.5" />
           <path d="m15.5 10 6-3.5v11L15.5 14" />
+        </svg>
+      );
+    case "camera":
+      return (
+        <svg {...base}>
+          <rect x="2.5" y="6.5" width="15" height="11" rx="2.4" />
+          <circle cx="10" cy="12" r="3" />
+          <path d="m17.5 9.5 4-1.6v8.2l-4-1.6M6 6.5l1-1.5h3l1 1.5" />
         </svg>
       );
     case "check":

@@ -44,7 +44,7 @@ export default function UseCases() {
   return (
     <section id="kam-piemerots" className="section section-soft">
       <div className="container">
-        <div className="section-head">
+        <div className="section-head reveal">
           <span className="section-eyebrow">Kam piemērots</span>
           <h2 className="section-title">
             Veidots tiem, kam telpa ir{" "}
@@ -56,7 +56,7 @@ export default function UseCases() {
           </p>
         </div>
 
-        <div className="usecases-grid">
+        <div className="usecases-grid reveal-stagger">
           {cases.map((c) => (
             <article key={c.title} className="usecase-card">
               <span className="usecase-icon">

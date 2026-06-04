@@ -22,7 +22,7 @@ export default function Intro() {
     <section id="intro" className="section">
       <div className="container">
         <div className="intro-grid">
-          <div className="intro-lead">
+          <div className="intro-lead reveal">
             <span className="section-eyebrow">Kāpēc tas palīdz</span>
             <h2 className="section-title">
               Cilvēki vēlas redzēt telpu,{" "}
@@ -41,7 +41,7 @@ export default function Intro() {
             </p>
           </div>
 
-          <ul className="intro-points">
+          <ul className="intro-points reveal-stagger">
             {points.map((p, i) => (
               <li key={p.title} className="intro-point">
                 <span className="intro-point-index">0{i + 1}</span>

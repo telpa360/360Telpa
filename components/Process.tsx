@@ -25,7 +25,7 @@ export default function Process() {
   return (
     <section id="process" className="section">
       <div className="container">
-        <div className="section-head">
+        <div className="section-head reveal">
           <span className="section-eyebrow">Process</span>
           <h2 className="section-title">
             No idejas līdz rezultātam{" "}
@@ -36,7 +36,7 @@ export default function Process() {
           </p>
         </div>
 
-        <ol className="process-timeline">
+        <ol className="process-timeline reveal-stagger">
           {steps.map((s) => (
             <li key={s.num} className="process-step">
               <span className="process-node" aria-hidden="true">

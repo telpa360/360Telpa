@@ -68,7 +68,7 @@ export default function Contact() {
     <section id="kontakti" className="section section-soft">
       <div className="container">
         <div className="contact-grid">
-          <div className="contact-info">
+          <div className="contact-info reveal">
             <span className="section-eyebrow">Kontakti</span>
             <h2 className="section-title">
               Parunāsim par tavu{" "}
@@ -104,7 +104,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form className="contact-form reveal" onSubmit={handleSubmit}>
             <div className="form-row">
               <label htmlFor="vards" className="form-label">
                 Vārds
