@@ -1,38 +1,68 @@
 "use client";
 
-import { useActionState, useEffect, useRef } from "react";
-import { submitContact, type ContactState } from "@/app/actions/contact";
-
-const initialContactState: ContactState = {
-  status: "idle",
-  message: "",
-};
+import { FormEvent, useState } from "react";
+import { getErrorMessage } from "@/utils/getErrorMessage";
 
 const services = [
   "360° virtuālās tūres",
+  "360° skati Google Maps profilam",
   "3D tūres",
   "Dronu filmēšana",
   "FPV dronu video",
-  "GoPro filmējumi",
   "Reklāmas video",
   "Cits / vēl nezinu",
 ];
 
 const EMAIL = "Telpa360@gmail.com";
 
-export default function Contact() {
-  const [state, formAction, isPending] = useActionState(
-    submitContact,
-    initialContactState
-  );
-  const formRef = useRef<HTMLFormElement>(null);
+type Note = { type: "success" | "error"; text: string };
 
-  // Reset the form fields after a successful submission.
-  useEffect(() => {
-    if (state.status === "success") {
-      formRef.current?.reset();
+export default function Contact() {
+  const [note, setNote] = useState<Note | null>(null);
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    try {
+      const form = event.currentTarget;
+      const data = new FormData(form);
+
+      const name = String(data.get("vards") ?? "").trim();
+      const contact = String(data.get("kontakts") ?? "").trim();
+      const service = String(data.get("pakalpojums") ?? "").trim();
+      const message = String(data.get("zina") ?? "").trim();
+
+      const subject = `Pieteikums filmēšanai${name ? ` — ${name}` : ""}`;
+      const body = [
+        `Vārds: ${name}`,
+        `E-pasts vai telefons: ${contact}`,
+        `Pakalpojums: ${service}`,
+        "",
+        "Ziņa:",
+        message,
+      ].join("\n");
+
+      const mailtoUrl = `mailto:${EMAIL}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+
+      // Opens the visitor's email client with a prepared message.
+      // Does not throw if no client is configured.
+      window.location.href = mailtoUrl;
+
+      setNote({
+        type: "success",
+        text: "Paldies! Atvērsies tava e-pasta programma ar sagatavotu vēstuli — nospied “Sūtīt”, lai pabeigtu pieteikumu.",
+      });
+    } catch (error) {
+      // Log the safely-converted message; never surface a raw object/Event.
+      console.error("Kļūda, atverot e-pastu:", getErrorMessage(error));
+      setNote({
+        type: "error",
+        text: `Neizdevās automātiski atvērt e-pasta programmu. Lūdzu, raksti mums tieši uz ${EMAIL}.`,
+      });
     }
-  }, [state.status]);
+  }
 
   return (
     <section id="kontakti" className="section section-soft">
@@ -74,7 +104,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <form ref={formRef} className="contact-form" action={formAction}>
+          <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-row">
               <label htmlFor="vards" className="form-label">
                 Vārds
@@ -87,7 +117,6 @@ export default function Contact() {
                 placeholder="Tavs vārds"
                 maxLength={200}
                 required
-                disabled={isPending}
               />
             </div>
 
@@ -103,7 +132,6 @@ export default function Contact() {
                 placeholder="lai mēs varētu sazināties"
                 maxLength={200}
                 required
-                disabled={isPending}
               />
             </div>
 
@@ -116,7 +144,6 @@ export default function Contact() {
                 name="pakalpojums"
                 className="form-input form-select"
                 defaultValue={services[0]}
-                disabled={isPending}
               >
                 {services.map((s) => (
                   <option key={s} value={s}>
@@ -138,27 +165,25 @@ export default function Contact() {
                 rows={4}
                 maxLength={5000}
                 required
-                disabled={isPending}
               />
             </div>
 
             <button
               type="submit"
               className="btn btn-primary btn-lg form-submit"
-              disabled={isPending}
             >
-              {isPending ? "Nosūta..." : "Nosūtīt pieteikumu"}
+              Nosūtīt pieteikumu
             </button>
 
-            {state.status !== "idle" && (
+            {note && (
               <p
                 className={`form-note ${
-                  state.status === "error" ? "form-note-error" : ""
+                  note.type === "error" ? "form-note-error" : ""
                 }`}
                 role="status"
                 aria-live="polite"
               >
-                {state.message}
+                {note.text}
               </p>
             )}
           </form>

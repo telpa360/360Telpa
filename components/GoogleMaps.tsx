@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { Icon } from "./Icons";
 
 const benefits = [
@@ -13,15 +16,25 @@ const benefits = [
  * format) used purely as a demonstration of how a business location appears
  * on Google Maps. It is NOT Telpa360 work.
  *
+ * The iframe loads plainly — it is NOT wrapped in a Promise and never throws.
+ * If it fails to load (e.g. in a sandboxed preview), a graceful Latvian
+ * fallback message is shown instead and the page keeps working.
+ *
  * TODO (reālam klientam): nomaini šo iframe ar klienta Google Maps profila
  * oficiālo "Kopīgot vai iegult karti" → "Iegult karti" iframe kodu, kas satur
- * piesaistīto 360° Street View skatu. Vienkārši aizvieto zemāk esošo <iframe>
- * ar Google izsniegto embed kodu (saglabā className="..." uz konteinera).
+ * piesaistīto 360° Street View skatu. Vienkārši aizvieto DEMO_EMBED_SRC vērtību
+ * ar Google izsniegto embed saiti.
  */
 const DEMO_EMBED_SRC =
   "https://www.google.com/maps?q=R%C4%ABgas%20Centr%C4%81ltirgus%2C%20R%C4%ABga&output=embed";
 
+const FALLBACK_TEXT =
+  "Ja karte priekšskatījumā neielādējas, atver lapu pārlūkā. Reālajā mājaslapā šeit tiks ievietots klienta Google Maps 360° skats.";
+
 export default function GoogleMaps() {
+  const [mapFailed, setMapFailed] = useState(false);
+  const showFallback = !DEMO_EMBED_SRC || mapFailed;
+
   return (
     <section id="google-maps" className="section section-soft">
       <div className="container">
@@ -63,24 +76,20 @@ export default function GoogleMaps() {
             </div>
 
             <div className="maps-embed">
-              {/* Demonstrācijas embed. Reālam klientam aizvieto ar viņa
-                  Google Maps profila iegultās kartes iframe kodu. */}
-              {DEMO_EMBED_SRC ? (
+              {showFallback ? (
+                <div className="maps-placeholder">
+                  <span className="maps-placeholder-pin" aria-hidden="true" />
+                  <p>{FALLBACK_TEXT}</p>
+                </div>
+              ) : (
                 <iframe
                   src={DEMO_EMBED_SRC}
                   title="Google Maps demonstrācijas piemērs"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   allowFullScreen
+                  onError={() => setMapFailed(true)}
                 />
-              ) : (
-                <div className="maps-placeholder">
-                  <span className="maps-placeholder-pin" aria-hidden="true" />
-                  <p>
-                    Šeit tiks parādīts klienta Google Maps 360° skats. Ievieto
-                    oficiālo Google Maps iegultās kartes kodu.
-                  </p>
-                </div>
               )}
             </div>
 
