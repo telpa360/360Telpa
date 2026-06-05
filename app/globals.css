@@ -634,6 +634,16 @@ button {
   animation: rise 0.9s var(--ease) 0.12s both;
 }
 
+/* Hero Street View card: subtle hover lift (scoped to the hero only). */
+.hero-sv {
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.hero-sv:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg), 0 34px 64px -30px rgba(14, 22, 40, 0.22);
+}
+
 /* Soft aura behind the preview for premium depth. */
 .hero-visual::before {
   content: "";
