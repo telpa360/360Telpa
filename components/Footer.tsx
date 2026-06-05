@@ -45,8 +45,8 @@ export default function Footer() {
 
           <div className="footer-contact">
             <span className="footer-nav-title">Sazinies</span>
-            <a href="mailto:Telpa360@gmail.com" className="footer-link">
-              Telpa360@gmail.com
+            <a href="mailto:info@telpa360.lv" className="footer-link">
+              info@telpa360.lv
             </a>
             <a href="tel:+37128606294" className="footer-link">
               +371 28606294

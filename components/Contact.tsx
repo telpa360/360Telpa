@@ -13,7 +13,7 @@ const services = [
   "Cits / vēl nezinu",
 ];
 
-const EMAIL = "Telpa360@gmail.com";
+const EMAIL = "info@telpa360.lv";
 
 type Note = { type: "success" | "error"; text: string };
 
