@@ -44,7 +44,7 @@ export default function TourEmbedSection() {
                 <Icon name="panorama" />
               </span>
               <span className="maps-frame-place">
-                <strong>Interaktīva 360° tūre</strong>
+                <strong>360° virtuālā tūre</strong>
                 <span>Velc, lai pagrieztos · pārvietojies starp telpām</span>
               </span>
               <span className="maps-demo-tag">Demo piemērs</span>
@@ -79,7 +79,7 @@ export default function TourEmbedSection() {
 
             <p className="maps-note">
               Šis ir demonstrācijas piemērs, lai parādītu, kā darbojas
-              interaktīva 360° tūre. Reālā tūre tiek veidota tieši tavam
+              360° virtuālā tūre. Reālā tūre tiek veidota tieši tavam
               īpašumam vai telpai.
             </p>
           </div>
