@@ -69,7 +69,7 @@ export default function GoogleMaps() {
                 <Icon name="pin" />
               </span>
               <span className="maps-frame-place">
-                <strong>360° Street View skats</strong>
+                <strong>Google Maps 360° skati</strong>
                 <span>Velc, lai apskatītos visapkārt</span>
               </span>
               <span className="maps-demo-tag">Demo piemērs</span>

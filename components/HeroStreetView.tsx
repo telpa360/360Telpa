@@ -4,23 +4,30 @@ import { useState } from "react";
 import { Icon } from "./Icons";
 
 /*
- * HERO GOOGLE MAPS EMBED
+ * HERO 360° STREET VIEW
  * ----------------------------------------------------------------------------
- * Official, no-API-key Google Maps embed ("output=embed") centered on Ventas
- * rumba, Kuldīga. This standard map embed ALWAYS loads, unlike the Street View
- * "output=svembed" format, which only works when a panorama happens to exist at
- * the exact snap coordinate (the river point 56.9680953,21.9769708 has none, so
- * Street View would not load there). The map stays interactive — the user can
- * pan and zoom — and Google's own labels/attribution are left untouched.
+ * Interactive, no-API-key Google Street View embed ("output=svembed") — the
+ * same format the lower Google Maps section uses and which works. Positioned at
+ * the old brick bridge / east approach in Kuldīga old town (regular street with
+ * official Street View car coverage), aimed toward Ventas rumba so the waterfall
+ * and surroundings are visible. The user can drag to look around and move with
+ * the Street View arrows; Google's own labels/attribution are left untouched.
  *
- * To recenter, change the q=<lat>,<lng> coordinates below.
+ * Target: Ventas rumba, Kuldīga (56.9680953,21.9769708). That exact point is in
+ * the river with no panorama, so we snap to the nearest covered street.
+ *
+ * If this ever shows Google's "no imagery" screen, paste an official Street View
+ * embed here instead: open Google Maps Street View at the spot → Share or embed
+ * → "Embed a map" → copy the src. Alternatives to try (cbll):
+ *   Kuldīgas vecais tilts:   cbll=56.967550,21.978250&cbp=12,308,0,0,0
+ *   Kuldīgas centrs (Liepājas iela): cbll=56.969200,21.973400&cbp=12,200,0,0,0
  *
  * The iframe loads plainly — NOT wrapped in a Promise and never throws. On a
  * load error it shows a graceful Latvian fallback so the page never crashes and
  * no "[object Event]" runtime error can occur.
  */
 const HERO_EMBED_SRC =
-  "https://maps.google.com/maps?q=56.9680953,21.9769708&z=16&hl=lv&output=embed";
+  "https://maps.google.com/maps?q=&layer=c&cbll=56.967700,21.979000&cbp=12,290,0,0,0&output=svembed";
 
 const FALLBACK_TEXT =
   "Ja priekšskatījumā Street View neielādējas, atver lapu pārlūkā.";
