@@ -19,12 +19,12 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <TourEmbedSection />
         <Intro />
         <Services />
         <Pricing />
         <Faq />
         <GoogleMaps />
-        <TourEmbedSection />
         <UseCases />
         <Process />
         <Benefits />

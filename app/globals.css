@@ -557,6 +557,25 @@ button {
   gap: clamp(40px, 6vw, 76px);
 }
 
+/* Solo hero (no side card): centered single column, tour shown right below. */
+.hero-inner--solo {
+  grid-template-columns: 1fr;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.hero-inner--solo .hero-subtitle {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-inner--solo .hero-actions,
+.hero-inner--solo .hero-stats {
+  justify-content: center;
+}
+
 .hero-content {
   animation: rise 0.8s var(--ease) both;
 }
@@ -1211,6 +1230,11 @@ button {
 .tour-showcase {
   max-width: 1000px;
   margin: 0 auto;
+}
+
+/* Tour section sits directly below the hero — tighten its top spacing. */
+#tures-piemers {
+  padding-top: clamp(44px, 6vw, 80px);
 }
 
 /* Taller, cinematic embed area for the interactive tour. */

@@ -1,9 +1,7 @@
-import HeroStreetView from "./HeroStreetView";
-
 export default function Hero() {
   return (
     <section id="hero" className="hero">
-      <div className="container hero-inner">
+      <div className="container hero-inner hero-inner--solo">
         <div className="hero-content">
           <span className="eyebrow">
             <span className="eyebrow-dot" aria-hidden="true" />
@@ -45,10 +43,6 @@ export default function Hero() {
               <span className="stat-label">Atbilde uz pieprasījumu</span>
             </li>
           </ul>
-        </div>
-
-        <div className="hero-visual">
-          <HeroStreetView />
         </div>
       </div>
     </section>
