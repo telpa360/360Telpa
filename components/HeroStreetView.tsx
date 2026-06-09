@@ -7,19 +7,19 @@ import { Icon } from "./Icons";
  * HERO 360° STREET VIEW
  * ----------------------------------------------------------------------------
  * Interactive, no-API-key Google Street View embed ("output=svembed") — the
- * same format the lower Google Maps section uses and which works. Positioned at
- * the old brick bridge / east approach in Kuldīga old town (regular street with
- * official Street View car coverage), aimed toward Ventas rumba so the waterfall
- * and surroundings are visible. The user can drag to look around and move with
- * the Street View arrows; Google's own labels/attribution are left untouched.
- *
- * Target: Ventas rumba, Kuldīga (56.9680953,21.9769708). That exact point is in
- * the river with no panorama, so we snap to the nearest covered street.
+ * same format the lower Google Maps section uses and which works. Anchored at
+ * Baznīcas iela 5, Kuldīga (56.96772,21.97098, geocoded via OpenStreetMap) — the
+ * old-town street area by the old brick bridge (continuation of state road
+ * P108/P120), which has official Street View car coverage. Functionality is
+ * prioritised over the exact label: this is a real, covered road area near
+ * Ventas rumba, so Street View snaps to a navigable panorama. The user can drag
+ * to look around and move with the arrows; Google's labels are left untouched.
+ * Initial heading faces east, toward the river / Ventas rumba direction.
  *
  * If this ever shows Google's "no imagery" screen, paste an official Street View
  * embed here instead: open Google Maps Street View at the spot → Share or embed
  * → "Embed a map" → copy the src. Alternatives to try (cbll):
- *   Kuldīgas vecais tilts:   cbll=56.967550,21.978250&cbp=12,308,0,0,0
+ *   Kuldīgas vecais tilts:           cbll=56.967550,21.978250&cbp=12,308,0,0,0
  *   Kuldīgas centrs (Liepājas iela): cbll=56.969200,21.973400&cbp=12,200,0,0,0
  *
  * The iframe loads plainly — NOT wrapped in a Promise and never throws. On a
@@ -27,7 +27,7 @@ import { Icon } from "./Icons";
  * no "[object Event]" runtime error can occur.
  */
 const HERO_EMBED_SRC =
-  "https://maps.google.com/maps?q=&layer=c&cbll=56.967700,21.979000&cbp=12,290,0,0,0&output=svembed";
+  "https://maps.google.com/maps?q=&layer=c&cbll=56.967720,21.970980&cbp=12,90,0,0,0&output=svembed";
 
 const FALLBACK_TEXT =
   "Ja priekšskatījumā Street View neielādējas, atver lapu pārlūkā.";
