@@ -557,25 +557,6 @@ button {
   gap: clamp(40px, 6vw, 76px);
 }
 
-/* Solo hero (no side card): centered single column, tour shown right below. */
-.hero-inner--solo {
-  grid-template-columns: 1fr;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-.hero-inner--solo .hero-subtitle {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.hero-inner--solo .hero-actions,
-.hero-inner--solo .hero-stats {
-  justify-content: center;
-}
-
 .hero-content {
   animation: rise 0.8s var(--ease) both;
 }
@@ -1232,9 +1213,32 @@ button {
   margin: 0 auto;
 }
 
-/* Tour section sits directly below the hero — tighten its top spacing. */
-#tures-piemers {
-  padding-top: clamp(44px, 6vw, 80px);
+/* Responsive 360° tour iframe wrapper (fixed height, not aspect-ratio) used by
+   both the hero tour card and the additional tour section. No overlay. */
+.tour360-embed {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background: var(--bg-soft);
+}
+
+.tour360-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 1024px) {
+  .tour360-embed {
+    height: 520px;
+  }
+}
+
+@media (max-width: 680px) {
+  .tour360-embed {
+    height: 440px;
+  }
 }
 
 /* Taller, cinematic embed area for the interactive tour. */

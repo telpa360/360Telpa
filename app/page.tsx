@@ -19,8 +19,8 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <TourEmbedSection />
         <Intro />
+        <TourEmbedSection />
         <Services />
         <Pricing />
         <Faq />

@@ -1,7 +1,9 @@
+import HeroTour from "./HeroTour";
+
 export default function Hero() {
   return (
     <section id="hero" className="hero">
-      <div className="container hero-inner hero-inner--solo">
+      <div className="container hero-inner">
         <div className="hero-content">
           <span className="eyebrow">
             <span className="eyebrow-dot" aria-hidden="true" />
@@ -43,6 +45,10 @@ export default function Hero() {
               <span className="stat-label">Atbilde uz pieprasījumu</span>
             </li>
           </ul>
+        </div>
+
+        <div className="hero-visual">
+          <HeroTour />
         </div>
       </div>
     </section>
