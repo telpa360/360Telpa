@@ -7,24 +7,24 @@ import { Icon } from "./Icons";
  * HERO 360° STREET VIEW
  * ----------------------------------------------------------------------------
  * Interactive, no-API-key Google Street View panorama (official "output=svembed"
- * format). Public location on a major road so it has official Google car
- * Street View coverage — the user can drag AND move through it with the
- * navigation arrows, and the overlay shows the road/place name (not an
- * individual photographer). Location: 11. novembra krastmala (Vecrīgas
- * krastmala), Rīga — scenic Old Town riverside, different from the Google
- * Maps section lower on the page (Brīvības piemineklis).
+ * format) in a pleasant pedestrian park so the user can look around AND move
+ * through it with the navigation arrows — a real 360° walking experience, with
+ * the place name shown (not an individual photographer). Location: Bastejkalna
+ * parks (canal promenade), Rīga.
  *
- * To try another Latvian location, just swap the cbll coordinates below, e.g.:
- *   Brīvības piemineklis, Rīga:   cbll=56.951357,24.113562
- *   Latvijas Nacionālā bibliotēka: cbll=56.945800,24.097700
- *   Jomas iela, Jūrmala:          cbll=56.972500,23.776800
+ * To try another Latvian location, just swap the cbll coordinates below:
+ *   Kronvalda parks, Rīga:         cbll=56.954500,24.108500
+ *   Vērmanes dārzs, Rīga:          cbll=56.952600,24.116500
+ *   Jomas iela, Jūrmala:           cbll=56.972500,23.776800
+ *   Dzintaru promenāde, Jūrmala:   cbll=56.976000,23.806000
+ *   Rātslaukums / Melngalvju nams: cbll=56.947200,24.106400
  *
  * The iframe loads plainly — NOT wrapped in a Promise and never throws. On a
  * load error it shows a graceful Latvian fallback so the page never crashes and
  * no "[object Event]" runtime error can occur.
  */
 const HERO_EMBED_SRC =
-  "https://maps.google.com/maps?q=&layer=c&cbll=56.948000,24.105200&cbp=12,265,0,0,0&output=svembed";
+  "https://maps.google.com/maps?q=&layer=c&cbll=56.950900,24.109300&cbp=12,40,0,0,0&output=svembed";
 
 const FALLBACK_TEXT =
   "Ja priekšskatījumā Street View neielādējas, atver lapu pārlūkā.";
@@ -41,7 +41,7 @@ export default function HeroStreetView() {
           <Icon name="pin" />
         </span>
         <span className="maps-frame-place">
-          <strong>360° Street View skats</strong>
+          <strong>Google Maps 360° skati</strong>
           <span>Velc un pārvietojies, lai apskatītos apkārt</span>
         </span>
         <span className="maps-demo-tag">Demo piemērs</span>
@@ -58,7 +58,7 @@ export default function HeroStreetView() {
             {!loaded && <span className="embed-skeleton" aria-hidden="true" />}
             <iframe
               src={HERO_EMBED_SRC}
-              title="360° Street View demonstrācijas piemērs — 11. novembra krastmala, Rīga"
+              title="Google Maps 360° skati demonstrācijas piemērs — Bastejkalna parks, Rīga"
               loading="lazy"
               allowFullScreen
               referrerPolicy="no-referrer-when-downgrade"
